@@ -2,34 +2,33 @@
   <!-- 背景 -->
   <div class="bg">
     <!-- 树木 -->
-    <img class="tree" src="../assets/pc/scene_dm.png.png">
+    <img class="tree" src="../assets/pc/scene_dm.png">
     <!-- 太阳 -->
-    <img class="sun" src="../assets/pc/scene_sun.png.png">
+    <img class="sun" src="../assets/pc/scene_sun.png">
     <!-- 云朵 -->
-    <img class="cloud-0" src="../assets/pc/scene_cloud0.png.png">
-    <img class="cloud-1" src="../assets/pc/scene_cloud1.png.png">
-    <img class="cloud-2" src="../assets/pc/scene_cloud2.png.png">
-    <img class="cloud-3" src="../assets/pc/scene_cloud3.png.png">
+    <img class="cloud-0" src="../assets/pc/scene_cloud0.png">
+    <img class="cloud-1" src="../assets/pc/scene_cloud1.png">
+    <img class="cloud-2" src="../assets/pc/scene_cloud2.png">
+    <img class="cloud-3" src="../assets/pc/scene_cloud3.png">
     <!-- 人物 -->
-    <img class="pm" src="../assets/pc/scene_mp.png.png">
-    <img v-if="roleMovie == 1" class="roleMovie" src="../assets/pc/roleMovie1.png.png">
-    <img v-if="roleMovie == 2" class="roleMovie" src="../assets/pc/roleMovie2.png.png">
-    <img v-if="roleMovie == 3" class="roleMovie" src="../assets/pc/roleMovie3.png.png">
-    <img v-if="roleMovie == 4" class="roleMovie" src="../assets/pc/roleMovie4.png.png">
-    <img v-if="roleMovie == 5" class="roleMovie" src="../assets/pc/roleMovie5.png.png">
+    <img class="pm" src="../assets/pc/scene_mp.png">
+    <img v-if="roleMovie == 1" class="roleMovie" src="../assets/pc/roleMovie1.png">
+    <img v-if="roleMovie == 2" class="roleMovie" src="../assets/pc/roleMovie2.png">
+    <img v-if="roleMovie == 3" class="roleMovie" src="../assets/pc/roleMovie3.png">
+    <img v-if="roleMovie == 4" class="roleMovie" src="../assets/pc/roleMovie4.png">
+    <img v-if="roleMovie == 5" class="roleMovie" src="../assets/pc/roleMovie5.png">
     <!-- 标题 -->
     <div class="title-bg">
-      <img class="title" src="../assets/pc/scene_label.png.png">
-      <img class="highlight-1" src="../assets/pc/scene_star0.png.png">
-      <img class="highlight-2" src="../assets/pc/scene_star1.png.png">
-      <img class="star-1" src="../assets/pc/scene_star2.png.png">
-      <img class="star-2" src="../assets/pc/scene_star3.png.png">
-      <img class="star-3" src="../assets/pc/scene_star4.png.png">
-      <img class="star-4" src="../assets/pc/scene_star5.png.png">
+      <img class="title" src="../assets/pc/scene_label.png">
+      <img class="highlight-1" src="../assets/pc/scene_star0.png">
+      <img class="highlight-2" src="../assets/pc/scene_star1.png">
+      <img class="star-1" src="../assets/pc/scene_star2.png">
+      <img class="star-2" src="../assets/pc/scene_star3.png">
+      <img class="star-3" src="../assets/pc/scene_star4.png">
+      <img class="star-4" src="../assets/pc/scene_star5.png">
       <!-- 电脑端提示 -->
-      <img class="code" src="../assets/pc/scene_code.png_v=1.png">
+      <img class="code" src="../assets/pc/scene_code.png">
     </div>
-
   </div>
 </template>
 
@@ -66,7 +65,7 @@ export default {
 .bg {
   position: relative;
   height: 100vh;
-  background-image: url('../assets/pc/scene_bg.png.png');
+  background-image: url('../assets/pc/scene_bg.png');
   background-size: cover;
   overflow: hidden;
 }

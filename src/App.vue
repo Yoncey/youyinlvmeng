@@ -1,21 +1,40 @@
 <template>
-  <router-view></router-view>
+  <PcIndex v-if="flag == 0" />
+  <PmdIndex v-if="flag == 1" />
+  <!-- <router-view></router-view> -->
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router'
+import PcIndex from './view/PcIndex.vue';
+import PmdIndex from './view/PmdIndex.vue';
+import { onMounted, ref } from 'vue';
+// import { useRouter } from 'vue-router'
 export default {
   name: 'App',
+  components: {
+    PcIndex,
+    PmdIndex,
+  },
   setup() {
-    const router = useRouter();
-    onMounted(() => {
+    let flag = ref(0);
+    function checkUserAgent() {
       if (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
-        router.push("/ys_pmd");
+        // router.push("/ys_pmd");
+        flag.value = 1;
+        // alert('456')
+        console.log(flag.value)
       } else {
-        router.push("/ys_pc");
+        // router.push("/ys_pc");
+        flag.value = 0;
+        // alert('123')
+        console.log(flag.value)
       }
+    }
+    // const router = useRouter();
+    onMounted(() => {
+      checkUserAgent();
     });
+    return { flag };
   }
 }
 </script>

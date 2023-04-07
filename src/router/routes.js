@@ -1,4 +1,4 @@
-const routes = [
+/* const routes = [
   {
     path: "",
     redirect: "/ys_pc",
@@ -15,4 +15,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default routes; */

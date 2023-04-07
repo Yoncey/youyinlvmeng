@@ -1,5 +1,5 @@
 <template>
-  这里是移动端
+  这里是移动端！！
 </template>
 
 <script>
