@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkys_youyinlvmeng"]=self["webpackChunkys_youyinlvmeng"]||[]).push([[462],{1462:function(n,e,u){function r(n,e,u,r,t,s){return" 这里是移动端 "}u.r(e),u.d(e,{default:function(){return a}});var t={name:"PmdIndex",setup(){}},s=u(89);const c=(0,s.Z)(t,[["render",r]]);var a=c}}]);
+//# sourceMappingURL=462.598b4e33.js.map
