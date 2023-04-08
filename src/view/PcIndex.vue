@@ -102,22 +102,6 @@ export default {
   overflow: hidden;
 }
 
-img {
-  position: absolute;
-  -webkit-user-drag: none;
-}
-
-.music-control {
-  position: absolute;
-  top: 3%;
-  right: 8%;
-  z-index: 3;
-}
-
-.pause {
-  animation: rotate 5s linear infinite;
-}
-
 .tree {
   width: auto;
   height: auto;
@@ -241,16 +225,6 @@ img {
 
   100% {
     transform: skewX(0) skewY(0);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotateZ(0);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
   }
 }
 

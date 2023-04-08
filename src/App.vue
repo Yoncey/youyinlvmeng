@@ -44,4 +44,31 @@ export default {
   margin: 0;
   padding: 0;
 }
+
+
+img {
+  position: absolute;
+  -webkit-user-drag: none;
+}
+
+.music-control {
+  position: absolute;
+  top: 3%;
+  right: 10vh;
+  z-index: 3;
+}
+
+.pause {
+  animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
 </style>
