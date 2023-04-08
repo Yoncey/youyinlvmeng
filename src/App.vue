@@ -1,6 +1,6 @@
 <template>
-  <PcIndex v-if="flag == 0" />
-  <PmdIndex v-if="flag == 1" />
+  <PcIndex v-if="flag" />
+  <PmdIndex v-if="!flag" />
   <!-- <router-view></router-view> -->
 </template>
 
@@ -16,16 +16,16 @@ export default {
     PmdIndex,
   },
   setup() {
-    let flag = ref(0);
+    let flag = ref(true);
     function checkUserAgent() {
       if (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
         // router.push("/ys_pmd");
-        flag.value = 1;
+        flag.value = false;
         // alert('456')
         console.log(flag.value)
       } else {
         // router.push("/ys_pc");
-        flag.value = 0;
+        flag.value = true;
         // alert('123')
         console.log(flag.value)
       }

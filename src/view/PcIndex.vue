@@ -1,8 +1,17 @@
 <template>
   <!-- 背景 -->
   <div class="bg">
-    <!-- 树木 -->
+    <!-- 音乐 -->
+    <audio id="music" loop>
+      <source src="../assets/music/GenshinImpactMainTheme.ogg" />
+    </audio>
+    <div class="music-control">
+      <img v-if="flag" src="../assets/pmd/music1.png" @click="playMusic" />
+      <img v-if="!flag" src="../assets/pmd/music2.png" @click="puaseMusic" />
+    </div>
+    <!-- 树木&草 -->
     <img class="tree" src="../assets/pc/scene_dm.png">
+    <img class="grass" src="../assets/pc/scene_cao.png">
     <!-- 太阳 -->
     <img class="sun" src="../assets/pc/scene_sun.png">
     <!-- 云朵 -->
@@ -38,6 +47,8 @@ import 'animate.css'
 export default {
   name: 'PcIndex',
   setup() {
+
+    // 人物走动
     let roleMovie = ref(1)
     function addRoleMovie() {
       if (roleMovie.value >= 5) roleMovie.value = 0;
@@ -50,12 +61,33 @@ export default {
       //   roleMovie.value++
       //   console.log(roleMovie.value)
       // }
+    };
 
+    // 控制背景音乐
+    let flag = ref(true);
+    function playMusic() {
+      const music = document.getElementById('music');
+      flag.value = false;
+      /*if (music.pause) {
+        // music.pause = false;
+        music.play();
+      } else {
+        music.pause = true;
+        // music.play = false;
+        music.pause();
+      }*/
+      music.play();
     }
+    function puaseMusic() {
+      let music = document.getElementById('music');
+      flag.value = true;
+      music.pause();
+    }
+
     onMounted(() => {
-      addRoleMovie()
+      addRoleMovie();
     })
-    return { roleMovie }
+    return { roleMovie, flag, playMusic, puaseMusic }
   },
 }
 </script>
@@ -75,6 +107,13 @@ img {
   -webkit-user-drag: none;
 }
 
+.music-control {
+  position: absolute;
+  top: 3%;
+  right: 8%;
+  z-index: 3;
+}
+
 .tree {
   width: auto;
   height: auto;
@@ -85,6 +124,14 @@ img {
   background-size: contain;
   background-position: bottom; */
   z-index: 1;
+}
+.grass {
+  width: auto;
+  height: auto;
+  right: 0;
+  bottom: -1%;
+  z-index: 3;
+  animation: grass-wave 1s linear alternate infinite;
 }
 
 .sun {
@@ -183,12 +230,22 @@ img {
   z-index: 3;
 }
 
+@keyframes grass-wave {
+  0% {
+    transform: skewX(-4deg) skewY(0);
+  }
+
+  100% {
+    transform: skewX(0) skewY(0);
+  }
+}
+
 @keyframes rotate {
-  from {
+  0% {
     transform: rotateZ(0);
   }
 
-  to {
+  100% {
     transform: rotateZ(360deg);
   }
 }
