@@ -7,7 +7,7 @@
     </audio>
     <div class="music-control">
       <img v-if="flag" src="../assets/pmd/music1.png" @click="playMusic" />
-      <img v-if="!flag" src="../assets/pmd/music2.png" @click="puaseMusic" />
+      <img class="pause" v-if="!flag" src="../assets/pmd/music2.png" @click="puaseMusic" />
     </div>
     <!-- 树木&草 -->
     <img class="tree" src="../assets/pc/scene_dm.png">
@@ -112,6 +112,10 @@ img {
   top: 3%;
   right: 8%;
   z-index: 3;
+}
+
+.pause {
+  animation: rotate 5s linear infinite;
 }
 
 .tree {
