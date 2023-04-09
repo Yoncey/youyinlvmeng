@@ -96,10 +96,12 @@ export default {
 
 <style scoped>
 .star-bottom {
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 100vh;
-  /* bottom: 0; */
+  height: 32vh;
+  bottom: 0;
+  /* background-color: tomato;
+  opacity: .5; */
   /* z-index: 3; */
   overflow: hidden;
   z-index: 3;

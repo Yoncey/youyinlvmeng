@@ -8,7 +8,7 @@
         <img class="cloud3" src="../assets/pmd/scene1_cloud2.png">
         <img class="cloud4" src="../assets/pmd/scene1_cloud3.png">
 
-        <!-- 场景一 -->
+        <!-- 起始页 -->
         <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
             <div v-if="go == !1">
                 <!-- 云 -->
@@ -41,14 +41,48 @@
             </div>
         </Transition>
 
-        <!-- 场景二 -->
+        <!-- 场景一 -->
         <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
-            <div  style="position: relative; height: 100vh;">
-                <!-- 草地 -->
-                <Transition name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
-                    <img v-if="go == 1" class="ground" src="../assets/pmd/scene1_img0.png">
-                </Transition>
-
+            <!-- 等于2时，消失进入场景二 -->
+            <div v-if="windRoate != 2">
+                <!-- 等于1的时候（由父组件provide），集体进入场景一 -->
+                <div v-if="go == 1" style="position: relative; height: 100vh;">
+                    <!-- 草地 -->
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                        <img class="ground" src="../assets/pmd/scene1_img0.png">
+                    </Transition>
+                    <TransitionGroup appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <!-- 风车2 -->
+                        <img class="windmill-4" src="../assets/pmd/scene2_img9_2.png" key="1">
+                        <img v-if="windRoate == 0" class="windmill-3" src="../assets/pmd/scene2_img9_1.png" key="2">
+                        <img v-if="windRoate == 1" class="windmill-3" src="../assets/pmd/scene2_img9_1.png"
+                            style="animation: rotate 4s linear infinite;" key="2">
+                        <!-- 城堡 -->
+                        <img class="castle-1" src="../assets/pmd/scene1_img5.png" key="3">
+                        <!-- 风车1 -->
+                        <img v-if="windRoate == 0" class="windmill-2" src="../assets/pmd/scene1_img2_2.png" key="4">
+                        <img v-if="windRoate == 0" class="windmill-1" src="../assets/pmd/scene1_img2_1.png" key="5"
+                            @click="Roate">
+                        <img v-if="windRoate == 1" class="windmill-2" src="../assets/pmd/scene2_img9_2.png" key="4">
+                        <img v-if="windRoate == 1" class="windmill-1" src="../assets/pmd/scene2_img9_1.png"
+                            style="animation: rotate 4s linear infinite;" key="5">
+                        <!-- 风车3 -->
+                        <img class="windmill-6" src="../assets/pmd/scene2_img9_2.png" key="6">
+                        <img v-if="windRoate == 0" class="windmill-5" src="../assets/pmd/scene2_img9_1.png" key="7">
+                        <img v-if="windRoate == 1" class="windmill-5" src="../assets/pmd/scene2_img9_1.png"
+                            style="animation: rotate 4s linear infinite;" key="7">
+                        <!-- 城堡 -->
+                        <img class="castle-2" src="../assets/pmd/scene1_img2.png" key="8">
+                        <!-- 树 -->
+                        <img class="tree-1" src="../assets/pmd/scene1_img1_1.png" key="9">
+                        <img class="tree-2" src="../assets/pmd/scene1_img1_0.png" key="10">
+                        <img class="tree-3" src="../assets/pmd/scene1_img1_2.png" key="11">
+                    </TransitionGroup>
+                    <!-- 点击转动风车 -->
+                    <div v-if="windRoate == 0">
+                        <img v-if="Txt1 == 1" class="hintTxt" src="../assets/pmd/scene1_hintTxt.png">
+                    </div>
+                </div>
             </div>
         </Transition>
 
@@ -66,18 +100,33 @@ export default {
     name: 'Scene01',
     setup() {
         let go = inject('go');
-        let goReturn = go;
-
         let title = ref(0);
+        let Txt1 = ref(0)
+        // 变为1时，风车开始转动，按钮消失
+        // 变为2时，进入场景二
+        let windRoate = ref(0);
+
+        function Roate() {
+            windRoate.value = 1;
+            setTimeout(() => {
+                windRoate.value = 2;
+            }, 2000);
+        }
+
         onMounted(() => {
             setTimeout(() => {
                 title.value = 1;
             }, 1000);
+            setTimeout(() => {
+                Txt1.value = 1;
+            }, 2500);
         })
         return {
             title,
             go,
-            goReturn
+            windRoate,
+            Roate,
+            Txt1,
         }
     }
 }
@@ -85,6 +134,7 @@ export default {
   
   
 <style scoped>
+/* 公用 */
 .bg {
     position: absolute;
     height: 100vh;
@@ -129,6 +179,7 @@ export default {
     animation: cloud .6s alternate infinite;
 }
 
+/* 起始页 */
 .cao {
     width: 100%;
     bottom: 0;
@@ -250,6 +301,96 @@ export default {
     bottom: 0;
 }
 
+.windmill-1 {
+    width: 10rem;
+    left: 5rem;
+    bottom: 22rem;
+    animation-delay: 1s;
+}
+
+.windmill-2 {
+    width: 3rem;
+    left: 8.6rem;
+    bottom: 20rem;
+    animation-delay: 1s;
+}
+
+.windmill-3 {
+    width: 8rem;
+    left: 1rem;
+    bottom: 20rem;
+    animation-delay: 1.4s;
+}
+
+.windmill-4 {
+    width: 3rem;
+    left: 3.5rem;
+    bottom: 17rem;
+    animation-delay: 1.4s;
+}
+
+.windmill-5 {
+    width: 7rem;
+    right: 3.5rem;
+    bottom: 21rem;
+    animation-delay: 1.6s;
+}
+
+.windmill-6 {
+    width: 3rem;
+    right: 5.5rem;
+    bottom: 18rem;
+    animation-delay: 1.6s;
+}
+
+.castle-1 {
+    width: 8rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 21rem;
+    animation-delay: 1.8s;
+}
+
+.castle-2 {
+    width: 26rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 10.5rem;
+    animation-delay: .5s;
+}
+
+.tree-1 {
+    width: 12rem;
+    left: -1.5rem;
+    bottom: 8rem;
+    animation-delay: 1.1s;
+}
+
+.tree-2 {
+    width: 8rem;
+    left: -1rem;
+    bottom: 2rem;
+    animation-delay: 1.2s;
+}
+
+.tree-3 {
+    width: 12rem;
+    right: -1rem;
+    bottom: 1rem;
+    animation-delay: 1.5s;
+}
+
+.hintTxt {
+    width: 10rem;
+    left: 5rem;
+    bottom: 33rem;
+    animation-name: flash;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
 @keyframes cloud {
     0% {
         transform: translateX(-2%);
@@ -297,6 +438,16 @@ export default {
 
     100% {
         transform: scale(100%)
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
     }
 }
 </style>
