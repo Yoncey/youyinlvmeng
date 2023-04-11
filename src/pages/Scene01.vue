@@ -41,6 +41,7 @@
             </div>
         </Transition>
 
+        场景一代码：
         <!-- 场景一 -->
         <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
             <!-- 等于2时，消失进入场景二 -->
@@ -79,11 +80,92 @@
                         <img class="tree-3" src="../assets/pmd/scene1_img1_2.png" key="11">
                     </TransitionGroup>
                     <!-- 点击转动风车 -->
+                    <!-- <div v-if="windRoate == 0">
+                        <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                            <img class="hintTxt" src="../assets/pmd/scene1_hintTxt.png">
+                        </Transition>
+                    </div> -->
                     <div v-if="windRoate == 0">
-                        <img v-if="Txt1 == 1" class="hintTxt" src="../assets/pmd/scene1_hintTxt.png">
+                        <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                            <img v-if="Txt1 == 1" class="hintTxt" src="../assets/pmd/scene1_hintTxt.png">
+                        </Transition>
                     </div>
                 </div>
             </div>
+        </Transition>
+
+        <!-- 场景二 -->
+        <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
+            <!-- 等于2时，消失进入场景三 -->
+            <div v-if="keli != 2">
+                <!-- 进入场景二：注意，整体往后推移3秒 -->
+                <!-- <div style="position: relative; height: 100vh;"> 测试用，做完删掉，换下面的div -->
+                <div v-if="windRoate == 2" style="position: relative; height: 100vh;">
+                    <!-- 草地 -->
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                        <img class="ground" src="../assets/pmd/scene2_img0.png" style="animation-delay: 3s;">
+                    </Transition>
+                    <!-- 太阳 -->
+                    <img class="sun" src="../assets/pmd/scene2_sun.png">
+                    <!-- 其他 -->
+                    <TransitionGroup appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <!-- 云朵 -->
+                        <img class="cloud-2" src="../assets/pmd/scene2_cloud.png" key="1">
+                        <!-- 草丛 -->
+                        <img class="grass-1" src="../assets/pmd/scene2_img3.png" key="2">
+                        <img class="grass-2" src="../assets/pmd/scene2_img2.png" key="3">
+                        <img class="grass-3" src="../assets/pmd/scene2_img6.png" key="4">
+                        <img class="grass-4" src="../assets/pmd/scene2_img5.png" key="5">
+                        <img class="grass-5" src="../assets/pmd/scene2_img4.png" key="6">
+                    </TransitionGroup>
+                    <!-- 中间建筑 -->
+                    <div class="castlePosition">
+                        <TransitionGroup appear name="animate__animated animate__bounce"
+                            enter-active-class="animate__bounceIn">
+                            <!-- 风车 -->
+                            <img class="windmill-7" src="../assets/pmd/scene2_img9_2.png" key="1">
+                        </TransitionGroup>
+                        <!-- 风车 -->
+                        <img v-if="fengche == 1" class="windmill-8" src="../assets/pmd/scene2_img9_1.png" key="2">
+                        <!-- 旋转风车 -->
+                        <img v-if="fengche == 2" class="windmill-8-1" src="../assets/pmd/scene2_img9_1.png" key="2">
+                        <TransitionGroup appear name="animate__animated animate__bounce"
+                            enter-active-class="animate__bounceIn">
+                            <!-- 楼房 -->
+                            <img class="build-1" src="../assets/pmd/scene2_img7.png" key="3">
+                            <img class="build-2" src="../assets/pmd/scene2_img8.png" key="4">
+                            <!-- 城堡 -->
+                            <img class="castle-3" src="../assets/pmd/scene2_img1.png" key="5">
+                            <!-- 点击敲击窗户 -->
+                            <div v-if="keli != 1" key="6">
+                                <img v-if="Txt2 == 1" class="hintTxt2" src="../assets/pmd/scene2_hintTxt.png">
+                                <img v-if="Txt2 == 1" class="windowLight" src="../assets/pmd/scene2_hintImg.png"
+                                    @click="keliShow">
+                            </div>
+                            <!-- 可莉 -->
+                            <div v-if="keli == 1">
+                                <img class="keli" src="../assets/pmd/scene2_role.png">
+                            </div>
+                        </TransitionGroup>
+                    </div>
+                </div>
+            </div>
+        </Transition>
+
+          <!-- 场景三 -->
+          <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
+            <!-- 等于2时，消失进入场景四 -->
+            <!-- <div v-if="keli != 2"> -->
+                <!-- 进入场景三：注意，整体往后推移3秒 -->
+                <!-- <div style="position: relative; height: 100vh;"> 测试用，做完删掉，换下面的div -->
+                <div v-if="keli == 2" style="position: relative; height: 100vh;">
+                    <!-- 背景 -->
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                        <img class="ground" src="../assets/pmd/scene3_img0.png.png" style="animation-delay: 3s;">
+                    </Transition>
+                    
+                </div>
+            <!-- </div> -->
         </Transition>
 
 
@@ -101,15 +183,41 @@ export default {
     setup() {
         let go = inject('go');
         let title = ref(0);
-        let Txt1 = ref(0)
+        let Txt1 = ref(0);
+        let Txt2 = ref(0);
         // 变为1时，风车开始转动，按钮消失
         // 变为2时，进入场景二
         let windRoate = ref(0);
+        // 变为1时，可莉出现，按钮消失
+        // 变为2时，进入场景三
+        let keli = ref(0);
+        let fengche = ref(0);
 
+        // 风车旋转
         function Roate() {
             windRoate.value = 1;
+            // 2秒后进入场景二
             setTimeout(() => {
                 windRoate.value = 2;
+            }, 2000);
+            // 6.6秒后，场景二的风车旋转
+            setTimeout(() => {
+                fengche.value = 1;
+            }, 6500);
+            setTimeout(() => {
+                fengche.value = 2;
+            }, 6600);
+            // 7秒后“敲击窗户”出现
+            setTimeout(() => {
+                Txt2.value = 1;
+            }, 7000);
+        }
+        // 可莉出现
+        function keliShow() {
+            keli.value = 1;
+            // 2秒后进入场景三
+            setTimeout(() => {
+                keli.value = 2;
             }, 2000);
         }
 
@@ -127,6 +235,10 @@ export default {
             windRoate,
             Roate,
             Txt1,
+            Txt2,
+            keliShow,
+            keli,
+            fengche,
         }
     }
 }
@@ -386,10 +498,161 @@ export default {
     width: 10rem;
     left: 5rem;
     bottom: 33rem;
-    animation-name: flash;
-    animation-duration: 1.5s;
+    animation-name: fadeIn;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
+    /* animation-delay: 2s; */
 }
+
+/* 场景二 */
+.sun {
+    width: 8rem;
+    left: 4.5rem;
+    top: 2.5rem;
+    animation-name: fadeIn, rotate;
+    animation-duration: 3s, 5s;
+    animation-timing-function: linear, linear;
+    animation-delay: 0, 3s;
+    animation-iteration-count: 1, infinite;
+}
+
+.cloud-2 {
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 11rem;
+    animation-name: fadeIn, tension;
+    animation-duration: 3s, .5s;
+    animation-timing-function: linear, linear;
+    animation-delay: 0, 3s;
+    animation-iteration-count: 1, infinite;
+    animation-direction: normal, alternate;
+}
+
+.castlePosition {
+    position: absolute;
+    /* background-color: tomato; */
+    width: 30rem;
+    height: 100vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.windmill-7 {
+    width: 5rem;
+    left: 2rem;
+    bottom: 13rem;
+    animation-delay: 4.3s;
+}
+
+.windmill-8 {
+    width: 10rem;
+    left: -1rem;
+    bottom: 20rem;
+    /* animation-delay: 4.3s; */
+}
+
+.windmill-8-1 {
+    animation: rotate 5s linear infinite;
+    width: 10rem;
+    left: -1rem;
+    bottom: 20rem;
+    /* animation-delay: 4.3s; */
+}
+
+
+.build-1 {
+    width: 6.5rem;
+    right: 3rem;
+    bottom: 25rem;
+    animation-delay: 4.5s;
+}
+
+.build-2 {
+    width: 5rem;
+    left: 2rem;
+    bottom: 9rem;
+    animation-delay: 4.4s;
+}
+
+.castle-3 {
+    width: 24rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation-delay: 4s;
+}
+
+.hintTxt2 {
+    width: 10rem;
+    left: 2.5rem;
+    bottom: 20.5rem;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-delay: 5.8s; */
+}
+
+.windowLight {
+    width: 3.3rem;
+    left: 6rem;
+    bottom: 16.8rem;
+    /* animation-delay: 5.8s; */
+}
+
+.keli {
+    width: 15rem;
+    left: 3.5rem;
+    bottom: 20.5rem;
+    animation-name: bounceIn;
+    animation-duration: 1s;
+    /* animation-timing-function: linear; */
+    animation-delay: .5s;
+}
+
+.grass-1 {
+    width: 5.5rem;
+    left: 0rem;
+    bottom: 5rem;
+    z-index: 1;
+    animation-delay: 4.9s;
+}
+
+.grass-2 {
+    width: 1.5rem;
+    left: 0;
+    bottom: 2rem;
+    z-index: 1;
+    animation-delay: 4.7s;
+}
+
+.grass-3 {
+    width: 6rem;
+    right: 0;
+    bottom: 8rem;
+    z-index: 1;
+    animation-delay: 5.7s;
+}
+
+.grass-4 {
+    width: 5rem;
+    right: 4rem;
+    bottom: 8rem;
+    z-index: 1;
+    animation-delay: 5.4s;
+}
+
+.grass-5 {
+    width: 150%;
+    right: 0;
+    bottom: 2.8rem;
+    z-index: 1;
+    animation-delay: 5.3s;
+}
+
+
 
 @keyframes cloud {
     0% {
@@ -448,6 +711,16 @@ export default {
 
     100% {
         transform: rotate(360deg)
+    }
+}
+
+@keyframes tension {
+    0% {
+        height: 28rem;
+    }
+
+    100% {
+        height: 27rem;
     }
 }
 </style>
