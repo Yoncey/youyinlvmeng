@@ -41,7 +41,6 @@
             </div>
         </Transition>
 
-        场景一代码：
         <!-- 场景一 -->
         <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
             <!-- 等于2时，消失进入场景二 -->
@@ -120,15 +119,22 @@
                     </TransitionGroup>
                     <!-- 中间建筑 -->
                     <div class="castlePosition">
-                        <TransitionGroup appear name="animate__animated animate__bounce"
-                            enter-active-class="animate__bounceIn">
+                        <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
                             <!-- 风车 -->
-                            <img class="windmill-7" src="../assets/pmd/scene2_img9_2.png" key="1">
-                        </TransitionGroup>
+                            <img class="windmill-7" src="../assets/pmd/scene2_img9_2.png">
+                        </Transition>
                         <!-- 风车 -->
-                        <img v-if="fengche == 1" class="windmill-8" src="../assets/pmd/scene2_img9_1.png" key="2">
+                        <div v-if="fengche == 0">
+                            <Transition appear name="animate__animated animate__bounce"
+                                enter-active-class="animate__bounceIn">
+                                <!-- 风车 -->
+                                <img class="windmill-8" src="../assets/pmd/scene2_img9_1.png">
+                            </Transition>
+                        </div>
                         <!-- 旋转风车 -->
-                        <img v-if="fengche == 2" class="windmill-8-1" src="../assets/pmd/scene2_img9_1.png" key="2">
+                        <div v-if="fengche == 1">
+                            <img class="windmill-8-1" src="../assets/pmd/scene2_img9_1.png">
+                        </div>
                         <TransitionGroup appear name="animate__animated animate__bounce"
                             enter-active-class="animate__bounceIn">
                             <!-- 楼房 -->
@@ -152,27 +158,91 @@
             </div>
         </Transition>
 
-          <!-- 场景三 -->
-          <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
+        <!-- 场景三 -->
+        <Transition name="animate__animated animate__bounce" leave-active-class="animate__bounceOut">
             <!-- 等于2时，消失进入场景四 -->
             <!-- <div v-if="keli != 2"> -->
-                <!-- 进入场景三：注意，整体往后推移3秒 -->
-                <!-- <div style="position: relative; height: 100vh;"> 测试用，做完删掉，换下面的div -->
-                <div v-if="keli == 2" style="position: relative; height: 100vh;">
-                    <!-- 背景 -->
+            <!-- 进入场景三：注意，整体往后推移3秒 -->
+            <!--<div style="position: relative; height: 100vh;">  测试用，做完删掉，换下面的div -->
+            <div v-if="keli == 2" style="position: relative; height: 100vh;">
+                <!-- 背景 -->
+                <div v-if="scene3Bg == 0">
                     <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
-                        <img class="ground" src="../assets/pmd/scene3_img0.png.png" style="animation-delay: 3s;">
+                        <img class="ground-2" src="../assets/pmd/scene3_img0.png" style="animation-delay: 3s;">
                     </Transition>
-                    
                 </div>
+                <div v-if="scene3Bg == 1">
+                    <img class="ground-2-2" src="../assets/pmd/scene3_img0.png">
+                </div>
+                <!-- 寒天之钉 -->
+                <div v-if="hantianzhiding == 0">
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <img class="pillar" src="../assets/pmd/scene3_img1_up.png">
+                    </Transition>
+                </div>
+                <!-- 寒天之钉：上下晃动 -->
+                <img v-if="hantianzhiding == 1" class="pillar-2" src="../assets/pmd/scene3_img1_up.png">
+                <!-- 雪山&雪地 -->
+                <TransitionGroup appear name="animate__animated animate__bounce" enter-active-class="animate__backInUp">
+                    <!-- 雪山 -->
+                    <img class="snowberg" src="../assets/pmd/scene3_img1.png" key="1">
+                    <!-- 雪地 -->
+                    <img class="snowfield-1" src="../assets/pmd/scene3_img3.png" key="2">
+                </TransitionGroup>
+                <!-- 其他 -->
+                <TransitionGroup appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                    <!-- 右侧雪山平台 -->
+                    <img class="platform" src="../assets/pmd/scene3_img2.png" key="1">
+                    <!-- 阿贝多 -->
+                    <img class="abeiduo" src="../assets/pmd/scene3_img5.png" key="2">
+                </TransitionGroup>
+                <!-- 树1 -->
+                <div v-if="tree1 == 0">
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <img class="tree-4" src="../assets/pmd/scene3_img4.png">
+                    </Transition>
+                </div>
+                <div v-if="tree1 == 1">
+                    <img class="tree-4-2" src="../assets/pmd/scene3_img4.png">
+                </div>
+                <!-- 树2 -->
+                <div v-if="tree2 == 0">
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <img class="tree-5" src="../assets/pmd/scene3_img7.png">
+                    </Transition>
+                </div>
+                <div v-if="tree2 == 1">
+                    <img class="tree-5-2" src="../assets/pmd/scene3_img7.png">
+                </div>
+                <!-- 点击查看画作 -->
+                <div v-if="Txt3 == 1">
+                    <img class="hintTxt3" src="../assets/pmd/scene3_hintTxt.png">
+                    <img class="drawLight" src="../assets/pmd/scene3_hintImg.png" @click="finsih">
+                </div>
+                <!-- 树3 -->
+                <div v-if="tree3 == 0">
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__bounceIn">
+                        <img class="tree-6" src="../assets/pmd/scene3_img8.png">
+                    </Transition>
+                </div>
+                <div v-if="tree3 == 1">
+                    <img class="tree-6-2" src="../assets/pmd/scene3_img8.png">
+                </div>
+                <!-- 雪地 -->
+                <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__backInUp">
+                    <img class="snowfield-2" src="../assets/pmd/scene3_img6.png">
+                </Transition>
+                <!-- 结束 -->
+                <div v-if="over == 1">
+                    <Transition appear name="animate__animated animate__bounce" enter-active-class="animate__fadeIn">
+                        <div class="mask">
+                            <img class="last" src="../assets/pmd/music3_frame.png">
+                        </div>
+                    </Transition>
+                </div>
+            </div>
             <!-- </div> -->
         </Transition>
-
-
-
-
-
-
     </div>
 </template>
   
@@ -185,6 +255,7 @@ export default {
         let title = ref(0);
         let Txt1 = ref(0);
         let Txt2 = ref(0);
+        let Txt3 = ref(0);
         // 变为1时，风车开始转动，按钮消失
         // 变为2时，进入场景二
         let windRoate = ref(0);
@@ -192,6 +263,14 @@ export default {
         // 变为2时，进入场景三
         let keli = ref(0);
         let fengche = ref(0);
+        // 场景三，相关动画切换
+        let scene3Bg = ref(0);
+        let tree1 = ref(0);
+        let tree2 = ref(0);
+        let tree3 = ref(0);
+        let hantianzhiding = ref(0);
+        // 结束
+        let over = ref(0);
 
         // 风车旋转
         function Roate() {
@@ -204,9 +283,6 @@ export default {
             setTimeout(() => {
                 fengche.value = 1;
             }, 6500);
-            setTimeout(() => {
-                fengche.value = 2;
-            }, 6600);
             // 7秒后“敲击窗户”出现
             setTimeout(() => {
                 Txt2.value = 1;
@@ -219,6 +295,30 @@ export default {
             setTimeout(() => {
                 keli.value = 2;
             }, 2000);
+            // 7秒后“查看画作”出现
+            setTimeout(() => {
+                Txt3.value = 1;
+            }, 7000);
+            // ?秒后，场景三背景、寒天之钉、树进行交替
+            setTimeout(() => {
+                scene3Bg.value = 1;
+            }, 3000);
+            setTimeout(() => {
+                tree1.value = 1;
+            }, 6500);
+            setTimeout(() => {
+                tree2.value = 1;
+            }, 6600);
+            setTimeout(() => {
+                tree3.value = 1;
+            }, 6800);
+            setTimeout(() => {
+                hantianzhiding.value = 1;
+            }, 7000);
+        }
+
+        function finsih() {
+            over.value = 1;
         }
 
         onMounted(() => {
@@ -239,6 +339,14 @@ export default {
             keliShow,
             keli,
             fengche,
+            Txt3,
+            scene3Bg,
+            tree1,
+            tree2,
+            tree3,
+            hantianzhiding,
+            finsih,
+            over,
         }
     }
 }
@@ -550,7 +658,7 @@ export default {
     width: 10rem;
     left: -1rem;
     bottom: 20rem;
-    /* animation-delay: 4.3s; */
+    animation-delay: 4.3s;
 }
 
 .windmill-8-1 {
@@ -652,6 +760,138 @@ export default {
     animation-delay: 5.3s;
 }
 
+/* 场景三 */
+.ground-2 {
+    width: 105%;
+    bottom: 0;
+}
+
+.ground-2-2 {
+    width: 105%;
+    bottom: 0;
+    animation: move-2 .8s linear alternate infinite;
+}
+
+.pillar {
+    width: 7rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 3rem;
+    animation-delay: 4s;
+}
+
+.pillar-2 {
+    width: 7rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 3rem;
+    animation: translation .8s linear alternate infinite;
+}
+
+.snowberg {
+    width: 110%;
+    bottom: 15rem;
+    left: -5%;
+    animation-delay: 3.2s;
+}
+
+.snowfield-1 {
+    width: 100%;
+    bottom: 0;
+    animation-delay: 3.2s;
+}
+
+.snowfield-2 {
+    width: 100%;
+    bottom: -3rem;
+    animation-delay: 3.6s;
+}
+
+.platform {
+    width: 25rem;
+    right: 0;
+    bottom: 8rem;
+    animation-delay: 3.4s;
+}
+
+.abeiduo {
+    width: 12rem;
+    right: 0;
+    bottom: 2rem;
+    animation-delay: 3.6s;
+}
+
+.tree-4 {
+    left: 1rem;
+    bottom: 2rem;
+    animation-delay: 3.5s;
+}
+
+.tree-5 {
+    width: 13rem;
+    left: -2rem;
+    bottom: 2rem;
+    animation-delay: 3.6s;
+}
+
+.tree-6 {
+    width: 11rem;
+    right: -1rem;
+    bottom: -5rem;
+    animation-delay: 3.8s;
+}
+
+.tree-4-2 {
+    bottom: 0;
+    animation: shake .8s .1s linear alternate infinite;
+}
+
+.tree-5-2 {
+    width: 13rem;
+    left: -2rem;
+    bottom: 2rem;
+    animation: shake .8s .3s linear alternate infinite;
+}
+
+.tree-6-2 {
+    width: 11rem;
+    right: -1rem;
+    bottom: -5rem;
+    animation: shake .8s .2s linear alternate infinite;
+}
+
+.hintTxt3 {
+    width: 12rem;
+    right: 0;
+    bottom: 23rem;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-delay: 2s; */
+}
+
+.drawLight {
+    width: 12rem;
+    right: 0;
+    bottom: 2rem;
+    /* animation-delay: 3.6s; */
+}
+
+.mask {
+    position: relative;
+    background-color: rgba(0, 0, 0, .5);
+    height: 100vh;
+    z-index: 3;
+}
+
+.last {
+    width: 90%;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%) translateY(-25%);
+}
 
 
 @keyframes cloud {
@@ -721,6 +961,36 @@ export default {
 
     100% {
         height: 27rem;
+    }
+}
+
+@keyframes move-2 {
+    0% {
+        transform: translateX(-2%);
+    }
+
+    100% {
+        transform: translateX(-1%);
+    }
+}
+
+@keyframes translation {
+    0% {
+        top: 2.8rem;
+    }
+
+    100% {
+        top: 3.2rem;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(-2deg)
+    }
+
+    100% {
+        transform: rotate(2deg)
     }
 }
 </style>
