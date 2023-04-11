@@ -302,7 +302,7 @@ export default {
             // ?秒后，场景三背景、寒天之钉、树进行交替
             setTimeout(() => {
                 scene3Bg.value = 1;
-            }, 3000);
+            }, 6000);
             setTimeout(() => {
                 tree1.value = 1;
             }, 6500);
