@@ -696,7 +696,8 @@ export default {
 .hintTxt2 {
     width: 10rem;
     left: 2.5rem;
-    bottom: 20.5rem;
+    /* bottom: 20.5rem; */
+    bottom: 25.2rem;
     animation-name: fadeIn;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -706,14 +707,16 @@ export default {
 .windowLight {
     width: 3.3rem;
     left: 6rem;
-    bottom: 16.8rem;
+    /* bottom: 16.8rem; */
+    bottom: 21.5rem;
     /* animation-delay: 5.8s; */
 }
 
 .keli {
     width: 15rem;
     left: 3.5rem;
-    bottom: 20.5rem;
+    /* bottom: 20.5rem; */
+    bottom: 25.2rem;
     animation-name: bounceIn;
     animation-duration: 1s;
     /* animation-timing-function: linear; */
